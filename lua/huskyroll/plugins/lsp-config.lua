@@ -12,6 +12,8 @@ return {
                 ensure_installed = {
                     "lua_ls",
                     "gopls",
+                    "pyright",
+                    "tsserver"
                 }
             })
         end
@@ -21,6 +23,13 @@ return {
         config = function()
             local lspconfig = require('lspconfig')
             lspconfig.lua_ls.setup({})
+            lspconfig.gopls.setup({})
+            lspconfig.pyright.setup({})
+            lspconfig.tsserver.setup({})
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+            vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+            vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+            vim.keymap.set({'n', 'v'}, "<leader>ca", vim.lsp.buf.code_action, {})
         end
     }
 }
